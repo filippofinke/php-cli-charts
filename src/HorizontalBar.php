@@ -8,7 +8,6 @@ class HorizontalBar extends Chart {
 
     public function __construct($title, $values, $labels, $colors) {
         parent::__construct($title, $values, $labels, $colors);
-        $this->size = $size;
     }
 
     public function draw() {
@@ -19,15 +18,22 @@ class HorizontalBar extends Chart {
         $lengths = array_map('strlen', $labels);
         $max_length = max($lengths) + 1;
         $max_value = max($values);
+        $min_value = min($values);
         foreach($labels as $index => $label) {
             $value = $values[$index];
             $string = str_pad($label, $max_length, " ");
             if($colors != null) echo "\033[".$colors[$index]."m";
             echo $string;
-            for($i = 0; $i < $value; $i++) {
-                echo "#";
+            for($i = $min_value; $i <= $max_value; $i++) {
+                if($value >= 0 && $i >= 0 && $value > $i) {
+                    echo "#";
+                } else if ($value < 0 && $i < 0 && $value <= $i){
+                    echo "#";
+                } else {
+                    echo " ";
+                }
             }
-            echo " ".str_pad($value, $max_value - $value + strlen($max_value), " ", STR_PAD_LEFT).PHP_EOL;
+            echo "\t".$value.PHP_EOL;
             if($colors != null) echo "\033[0m";
         }
 
