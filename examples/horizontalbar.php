@@ -5,7 +5,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 $title = "Orders";
-$values = [3, 10, 5];
+$values = [-10, 10, 5];
 $labels = ["January", "February", "March"];
 $colors = ["0;33", "0;32", "0;31"];
 
