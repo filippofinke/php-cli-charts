@@ -14,11 +14,14 @@ class HorizontalBar extends Chart {
         $labels = $this->getLabels();
         $colors = $this->getColors();
         $values = $this->getValues();
+        $title = $this->getTitle();
 
         $lengths = array_map('strlen', $labels);
         $max_length = max($lengths) + 1;
         $max_value = max($values);
         $min_value = min($values);
+        echo $title.PHP_EOL;
+
         foreach($labels as $index => $label) {
             $value = $values[$index];
             $string = str_pad($label, $max_length, " ");
