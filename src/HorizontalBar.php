@@ -6,14 +6,7 @@ namespace Charts;
 
 class HorizontalBar extends Chart {
 
-    private $size;
-
-    public function getSize()
-    {
-        return $this->size;
-    }
-
-    public function __construct($title, $values, $labels, $colors, $size = 1) {
+    public function __construct($title, $values, $labels, $colors) {
         parent::__construct($title, $values, $labels, $colors);
         $this->size = $size;
     }
