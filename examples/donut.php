@@ -7,5 +7,6 @@ $characters = ["A", "B", "C"];
 $labels = ["January", "February", "March"];
 $radius = 6;
 $size = 2;
-$pie = new Charts\Donut($title, $values, $labels, $characters, $radius, $size);
+$colors = ["0;33", "0;32", "0;31"];
+$pie = new Charts\Donut($title, $values, $labels, $colors, $characters, $radius, $size);
 $pie->draw();
