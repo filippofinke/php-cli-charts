@@ -1,0 +1,19 @@
+{
+    "name": "filippofinke/php-cli-charts",
+    "description": "A simple php library to generate cli charts",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Filippo Finke",
+            "email": "filippo.finke@samtrevano.ch"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Charts\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
