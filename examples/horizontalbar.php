@@ -5,10 +5,10 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 $title = "Orders";
-$values = [14, 10, 7];
+$values = [3, 10, 5];
 $labels = ["January", "February", "March"];
 $size = 2;
 $colors = ["0;33", "0;32", "0;31"];
 
-$bar = new Charts\Bar($title, $values, $labels, $colors, $size);
-$bar->draw();
+$hbar = new Charts\HorizontalBar($title, $values, $labels, $colors, $size);
+$hbar->draw();

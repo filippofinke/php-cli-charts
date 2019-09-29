@@ -12,8 +12,9 @@ $title = "Orders";
 $values = [14, 10, 7];
 $labels = ["January", "February", "March"];
 $size = 2;
+$colors = ["0;33", "0;32", "0;31"];
 
-$bar = new Charts\Bar($title, $values, $labels, $size);
+$bar = new Charts\Bar($title, $values, $labels, $colors, $size);
 $bar->draw();
 ```
 #### Output
@@ -47,7 +48,8 @@ $characters = ["A", "B", "C"];
 $labels = ["January", "February", "March"];
 $radius = 6;
 $size = 2;
-$pie = new Charts\Donut($title, $values, $labels, $characters, $radius, $size);
+$colors = ["0;33", "0;32", "0;31"];
+$pie = new Charts\Donut($title, $values, $labels, $colors, $characters, $radius, $size);
 $pie->draw();
 ```
 #### Output
@@ -69,4 +71,25 @@ AAAA                  AAAA
 January 85%
 February 9%
 March 6%
+```
+
+### Horizontal Bar
+```php
+<?php
+require __DIR__ . '/../vendor/autoload.php';
+
+$title = "Orders";
+$values = [3, 10, 5];
+$labels = ["January", "February", "March"];
+$size = 2;
+$colors = ["0;33", "0;32", "0;31"];
+
+$hbar = new Charts\HorizontalBar($title, $values, $labels, $colors, $size);
+$hbar->draw();
+```
+#### Output
+```
+January  ###         3
+February ########## 10
+March    #####       5
 ```

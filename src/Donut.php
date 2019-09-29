@@ -1,4 +1,7 @@
 <?php
+/**
+ * Filippo Finke
+ */
 namespace Charts;
 
 class Donut extends Chart
@@ -26,9 +29,9 @@ class Donut extends Chart
 
 
 
-    public function __construct($title, $values, $labels, $characters, $radius = 10, $size = 2)
+    public function __construct($title, $values, $labels, $colors, $characters, $radius = 10, $size = 2)
     {
-        parent::__construct($title, $values, $labels);
+        parent::__construct($title, $values, $labels, $colors);
         $this->characters = $characters;
         $this->radius = $radius;
         $this->size = $size;
@@ -41,6 +44,7 @@ class Donut extends Chart
         $labels = $this->getLabels();
         $radius = $this->getRadius();
         $characters = $this->getCharacters();
+        $colors = $this->getColors();
         $diameter = $radius * 2;
         $twopi = M_PI * 2;
         $circle = [];
@@ -57,12 +61,16 @@ class Donut extends Chart
         $start = 0;
         $percents = [];
         foreach($values as $index => $value) {
+            $string = str_repeat($characters[$index], $this->getSize());
+            if($colors != null) {
+                $string = "\033[".$colors[$index]."m".$string."\033[0m";
+            }
             $p = round($value / $total * 100 );
             $perc = $start + $p;
             $percents[] = array(
                 $start,
                 $perc,
-                str_repeat($characters[$index], $this->getSize()),
+                $string,
                 $p
             );
             $start = $perc;
@@ -83,7 +91,11 @@ class Donut extends Chart
             echo PHP_EOL;
         }
         foreach($percents as $index => $perc) {
-            echo $labels[$index]." ".$perc[3]."%".PHP_EOL;
+            $string = $labels[$index]." ".$perc[3]."%";
+            if($colors != null) {
+                $string = "\033[".$colors[$index]."m".$string."\033[0m";
+            }
+            echo $string.PHP_EOL;
         }
     }
 }

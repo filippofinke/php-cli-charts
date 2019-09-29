@@ -1,4 +1,7 @@
 <?php
+/**
+ * Filippo Finke
+ */
 namespace Charts;
 
 class Bar extends Chart
@@ -10,9 +13,9 @@ class Bar extends Chart
         return $this->size;
     }
 
-    public function __construct($title, $values, $labels, $size = 1)
+    public function __construct($title, $values, $labels, $colors, $size = 1)
     {
-        parent::__construct($title, $values, $labels);
+        parent::__construct($title, $values, $labels, $colors);
         $this->size = $size;
     }
 
@@ -22,6 +25,7 @@ class Bar extends Chart
         $values = $this->getValues();
         $labels = $this->getLabels();
         $size = $this->getSize();
+        $colors = $this->getColors();
 
         $max = max($values);
         $length = count($labels) - 1;
@@ -34,7 +38,9 @@ class Bar extends Chart
             foreach ($values as $index => $value) {
                 $label_length = strlen($labels[$index]) + 1;
                 if ($value >= $i) {
+                    if($colors != null) echo "\033[".$colors[$index]."m";
                     echo str_pad(str_repeat("*", $size), $label_length, " ", STR_PAD_BOTH);
+                    if($colors != null) echo "\033[0m";
                 } else {
                     echo str_repeat(" ", $label_length);
                 }
@@ -42,6 +48,11 @@ class Bar extends Chart
             echo PHP_EOL;
         }
         echo str_repeat(" ", strlen($max) + 1);
-        echo implode($labels, " ").PHP_EOL;
+        foreach($labels as $index => $label) {
+            if($colors != null) echo "\033[".$colors[$index]."m";
+            echo $label." ";
+            if($colors != null) echo "\033[0m";
+        }
+        echo PHP_EOL;
     }
 }
